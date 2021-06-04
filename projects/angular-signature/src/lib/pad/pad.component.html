@@ -1,0 +1,26 @@
+<!--<div style="background-color: #eee;">-->
+<!--  <canvas  #myCanvas-->
+<!--          (touchstart)="startPainting($event)"-->
+<!--          (touchend)="endPainting()"-->
+<!--          (touchmove)="draw($event)"-->
+
+<!--          (mousedown)="startPainting($event)"-->
+<!--          (mouseup)="endPainting()"-->
+<!--          (mousemove)="draw($event)"-->
+<!--  ></canvas>-->
+
+<!--  <br>-->
+<!--  <button (click)="clearPad()" >Clear</button>-->
+<!--  <button (click)="getCanvasImage()" >To Image</button>-->
+<!--</div>-->
+<div style="background-color: #eee;">
+  <canvas id="myCanvas"
+          (mousedown)="startPainting($event)"
+          (mouseup)="endPainting()"
+          (mousemove)="draw($event)"
+          [style]="{'height' : pad_height}"
+  >
+
+  </canvas>
+</div>
+<p>Hello World</p>
