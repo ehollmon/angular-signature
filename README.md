@@ -1,27 +1,83 @@
-# NgSignatureCore
+# @ehollmon/angular-signature
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+# installation with npm
+npm install @ehollmon/angular-signature
 
-## Code scaffolding
+# installation with yarn
+yarn add @ehollmon/angular-signature
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
+```html
+<sig-pad #mySignaturePad [pad_height]="1000"></sig-pad>
+```
 
-## Build
+```ts
+import {PadComponent as SigPadComponent} from 'angular-signature';
+import {HttpClient} from "@angular/common/http";
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+export class AppComponent implements OnInit {
+  @ViewChild('myPad')  myPad : SigPadComponent;
 
-## Running unit tests
+  constructor(
+    private http : HttpClient
+  ) {}
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  /**
+   * Example 1: Copy the canvas to an image and append to the current document
+   */
+  appendSignatureImageToHTMLBody(){
+    /**
+     * Convert the current state of the canvas to image
+     */
+    let img_data = this.myPad.getImageData();
+    var image = new Image();
+    var div_container = document.createElement('div')
+    
+    // Set the image src to the image data
+    image.src = img_data;
+    
+    // add the image to a div container
+    div_container.appendChild(image)
 
-## Running end-to-end tests
+    // display the image by appending the div container the the html body
+    document.body.append(div_container)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  }
 
-## Further help
+  /**
+   * Example 2: Send base64 image data to server
+   */
+  sendSignatureImageServer(){
+    /**
+     * Get Image data
+     */
+    let img_data = this.myPad.getImageData();
+    let url = 'https://<your-endpoint>';
+    
+    let params = {
+      imgBase64: img_data
+    };
+    
+    // Send Data to server
+    this.http.post(url, params).subscribe( response => {
+     // ...
+    });
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  }
+
+
+}
+```
+
+## Issue Reporting
+
+If you have found a bug or if you have a feature request, please report them at this repository issues section.
+
+## Author
+[@ehollmon](https://github.com/ehollmon)

@@ -1,24 +1,83 @@
-# AngularSignature
+# @ehollmon/angular-signature
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project angular-signature` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-signature`.
-> Note: Don't forget to add `--project angular-signature` or else it will be added to the default project in your `angular.json` file. 
+```bash
+# installation with npm
+npm install @ehollmon/angular-signature
 
-## Build
+# installation with yarn
+yarn add @ehollmon/angular-signature
+```
 
-Run `ng build angular-signature` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
+```html
+<sig-pad #mySignaturePad [pad_height]="1000"></sig-pad>
+```
 
-## Publishing
+```ts
+import {PadComponent as SigPadComponent} from 'angular-signature';
+import {HttpClient} from "@angular/common/http";
 
-After building your library with `ng build angular-signature`, go to the dist folder `cd dist/angular-signature` and run `npm publish`.
+export class AppComponent implements OnInit {
+  @ViewChild('myPad')  myPad : SigPadComponent;
 
-## Running unit tests
+  constructor(
+    private http : HttpClient
+  ) {}
 
-Run `ng test angular-signature` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  /**
+   * Example 1: Copy the canvas to an image and append to the current document
+   */
+  appendSignatureImageToHTMLBody(){
+    /**
+     * Convert the current state of the canvas to image
+     */
+    let img_data = this.myPad.getImageData();
+    var image = new Image();
+    var div_container = document.createElement('div')
+    
+    // Set the image src to the image data
+    image.src = img_data;
+    
+    // add the image to a div container
+    div_container.appendChild(image)
 
-## Further help
+    // display the image by appending the div container the the html body
+    document.body.append(div_container)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  }
+
+  /**
+   * Example 2: Send base64 image data to server
+   */
+  sendSignatureImageServer(){
+    /**
+     * Get Image data
+     */
+    let img_data = this.myPad.getImageData();
+    let url = 'https://<your-endpoint>';
+    
+    let params = {
+      imgBase64: img_data
+    };
+    
+    // Send Data to server
+    this.http.post(url, params).subscribe( response => {
+     // ...
+    });
+
+  }
+
+
+}
+```
+
+## Issue Reporting
+
+If you have found a bug or if you have a feature request, please report them at this repository issues section.
+
+## Author
+[@ehollmon](https://github.com/ehollmon)

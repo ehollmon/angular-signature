@@ -15,7 +15,7 @@ export class PadComponent implements OnInit {
 
 
   test(){
-    var img_data = this.myPad.getCanvasImage();
+    var img_data = this.myPad.getImageData();
 
     var image = new Image();
     image.src = img_data;

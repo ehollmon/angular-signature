@@ -17,7 +17,7 @@ export class PadComponent implements OnInit {
 
   constructor() { }
 
-  public getCanvasImage(){
+  public getImageData(){
     return this.canvas.toDataURL();
   }
 
