@@ -1,8 +1,15 @@
-<h1>Pad Demo</h1>
-
-<sig-pad #myPad [pad_height]="1000"></sig-pad>
-
+<sig-pad #myPad
+   [pad_height]="'300px'"
+   [pen_size]="10"
+   [pen_color]="'blue'"
+   [pad_border_color]="'#ff0000'"
+   [pad_border_width]="'5px'"
+   [pad_background_color]="'rgba(254,254,254,.9)'"
+         (signingStart)="signingStarted()"
+         (signingEnd)="signingEnded()"
+>
+</sig-pad>
 
 <br>
-
+<button (click)="clearPad()">Clear</button>
 <button (click)="test()">Add Signature Image</button>

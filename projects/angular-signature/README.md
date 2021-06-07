@@ -18,11 +18,11 @@ yarn add @ehollmon/angular-signature
 ```
 
 ```ts
-import {PadComponent as SigPadComponent} from 'angular-signature';
+import {PadComponent } from '@ehollmon/angular-signature';
 import {HttpClient} from "@angular/common/http";
 
 export class AppComponent implements OnInit {
-  @ViewChild('myPad')  myPad : SigPadComponent;
+  @ViewChild('myPad')  myPad : PadComponent;
 
   constructor(
     private http : HttpClient
@@ -68,12 +68,69 @@ export class AppComponent implements OnInit {
     this.http.post(url, params).subscribe( response => {
      // ...
     });
-
   }
-
-
 }
 ```
+
+## Configuration Options
+
+### Configure Pad Dimensions
+```html
+<sig-pad 
+  [pad_height]="'300px'" 
+  [pad_height]="'300px'" >
+</sig-pad>
+```
+
+### Configure Pad Styles
+```html
+<sig-pad 
+  [pad_background_color]="'rgba(254,254,254,.9)'"
+  [pad_border_width]="'5px'"
+  [pad_border_color]="'red'" >
+</sig-pad>
+```
+
+### Configure Pen Style
+```html
+<sig-pad 
+  [pen_size]="10"
+  [pen_color]="'blue'" >
+</sig-pad>
+```
+
+## Event Handling
+```html
+<sig-pad
+  (signingStart)="userStartedSigning()"
+  (signing)="userCurrentlySigning()"
+  (signingEnd)="userStoppedSigning()" >
+</sig-pad>
+```
+
+```ts
+import {PadComponent} from '@ehollmon/angular-signature';
+
+export class AppComponent implements OnInit {
+  @ViewChild('myPad')  myPad : PadComponent;
+    
+  ...
+  
+  userStartedSigning(){
+   // Your logic here
+  }
+
+  userCurrentlySigning(){
+    // Your logic here
+  }
+
+  userStoppedSigning(){
+    // Your logic here
+  }
+  
+}
+```
+
 
 ## Issue Reporting
 

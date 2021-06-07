@@ -10,22 +10,30 @@ export class PadComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ngOnChanges(){}
+
+  clearPad(){
+    this.myPad.clearPad();
   }
 
-
   test(){
-    var img_data = this.myPad.getImageData();
+    let img_data = this.myPad.getImageData();
+    var div_container = document.createElement('div')
 
     var image = new Image();
     image.src = img_data;
+    div_container.appendChild(image)
 
-    var image_div = document.createElement('div')
-    image_div.appendChild(image)
-
-    document.body.append(image_div)
-
+    document.body.append(div_container)
   }
 
+  signingStarted() {
+    console.log("signing started")
+  }
 
+  signingEnded() {
+    console.log("signing ended")
+  }
 }
