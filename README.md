@@ -2,6 +2,9 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
+![ Signature Gif](angular-signature-gif.gif)
+
+
 ## Installation
 
 ```bash
@@ -14,7 +17,7 @@ yarn add @ehollmon/angular-signature
 
 ## Usage
 ```html
-<sig-pad #mySignaturePad [pad_height]="1000"></sig-pad>
+<sig-pad #myPad [pad_height]="1000"></sig-pad>
 ```
 
 ```ts
@@ -38,10 +41,10 @@ export class AppComponent implements OnInit {
     let img_data = this.myPad.getImageData();
     var image = new Image();
     var div_container = document.createElement('div')
-    
+
     // Set the image src to the image data
     image.src = img_data;
-    
+
     // add the image to a div container
     div_container.appendChild(image)
 
@@ -59,14 +62,14 @@ export class AppComponent implements OnInit {
      */
     let img_data = this.myPad.getImageData();
     let url = 'https://<your-endpoint>';
-    
+
     let params = {
       imgBase64: img_data
     };
-    
+
     // Send Data to server
     this.http.post(url, params).subscribe( response => {
-     // ...
+      // ...
     });
   }
 }
@@ -76,15 +79,15 @@ export class AppComponent implements OnInit {
 
 ### Configure Pad Dimensions
 ```html
-<sig-pad 
-  [pad_height]="'300px'" 
+<sig-pad
+  [pad_height]="'300px'"
   [pad_height]="'300px'" >
 </sig-pad>
 ```
 
 ### Configure Pad Styles
 ```html
-<sig-pad 
+<sig-pad
   [pad_background_color]="'rgba(254,254,254,.9)'"
   [pad_border_width]="'5px'"
   [pad_border_color]="'red'" >
@@ -93,7 +96,7 @@ export class AppComponent implements OnInit {
 
 ### Configure Pen Style
 ```html
-<sig-pad 
+<sig-pad
   [pen_size]="10"
   [pen_color]="'blue'" >
 </sig-pad>
@@ -113,11 +116,11 @@ import {PadComponent} from '@ehollmon/angular-signature';
 
 export class AppComponent implements OnInit {
   @ViewChild('myPad')  myPad : PadComponent;
-    
-  ...
-  
+
+  //...
+
   userStartedSigning(){
-   // Your logic here
+    // Your logic here
   }
 
   userCurrentlySigning(){
@@ -127,7 +130,7 @@ export class AppComponent implements OnInit {
   userStoppedSigning(){
     // Your logic here
   }
-  
+
 }
 ```
 

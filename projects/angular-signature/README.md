@@ -2,6 +2,9 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
+![ Signature Gif](angular-signature-gif.gif)
+
+
 ## Installation
 
 ```bash
@@ -14,7 +17,7 @@ yarn add @ehollmon/angular-signature
 
 ## Usage
 ```html
-<sig-pad #mySignaturePad [pad_height]="1000"></sig-pad>
+<sig-pad #myPad [pad_height]="1000"></sig-pad>
 ```
 
 ```ts
@@ -114,7 +117,7 @@ import {PadComponent} from '@ehollmon/angular-signature';
 export class AppComponent implements OnInit {
   @ViewChild('myPad')  myPad : PadComponent;
     
-  ...
+  //...
   
   userStartedSigning(){
    // Your logic here
